@@ -1,0 +1,7 @@
+button {
+    border: none;
+}
+
+.isActive {
+    background-color: #bdbdc1;
+}
