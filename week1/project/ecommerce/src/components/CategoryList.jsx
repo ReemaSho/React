@@ -1,11 +1,15 @@
+import AllCategories from "../fake-data/all-categories";
 import Category from "./Category";
 
-const CategoryList = ({ List, selectedCategory, click }) => {
-  const categories = List.map((CategoryItem) => (
+const CategoryList = ({ SelectedCategory, SetSelectedCategory }) => {
+  const changeCategory = (e) => {
+    SetSelectedCategory(e.target.value);
+  };
+  const categories = AllCategories.map((CategoryItem) => (
     <Category
       key={CategoryItem}
-      isActiveStyle={`${selectedCategory === CategoryItem ? "isActive" : ""}`}
-      changeCategory={click}
+      isActiveStyle={`${SelectedCategory === CategoryItem ? "isActive" : ""}`}
+      ChangeCategory={changeCategory}
       Value={CategoryItem}
     />
   ));

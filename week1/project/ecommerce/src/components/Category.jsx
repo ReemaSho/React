@@ -1,10 +1,10 @@
 import "./Css/category.css";
 
-const Category = ({ isActiveStyle, changeCategory, Value }) => {
+const Category = ({ isActiveStyle, ChangeCategory, Value }) => {
   return (
     <button
-      className={` f5  ph3 ma1 pv2 mb2 dib black b   ${isActiveStyle}`}
-      onClick={changeCategory}
+      className={` f5  ph3 ma1 pv2 mb2 dib black b ${isActiveStyle}`}
+      onClick={ChangeCategory}
       value={Value}
     >
       {Value}
