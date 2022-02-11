@@ -1,4 +1,4 @@
-import AllCategories from "../fake-data/all-categories";
+import AllCategories from "../../fake-data/all-categories";
 import Category from "./Category";
 
 const CategoryList = ({ SelectedCategory, SetSelectedCategory }) => {

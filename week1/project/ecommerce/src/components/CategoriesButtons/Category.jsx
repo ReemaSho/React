@@ -1,4 +1,4 @@
-import "./Css/category.css";
+import "./category.css";
 
 const Category = ({ isActiveStyle, ChangeCategory, Value }) => {
   return (

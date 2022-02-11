@@ -1,4 +1,4 @@
-import { Products } from "../fake-data/all-products";
+import { Products } from "../../fake-data/all-products";
 import ProductCard from "./ProductCard";
 
 const ProductsList = ({ SelectedCategory }) => {
@@ -19,7 +19,9 @@ const ProductsList = ({ SelectedCategory }) => {
     />
   ));
   return (
-    <ul className="flex flex-column flex-row-ns flex-wrap">{ProductItems}</ul>
+    <ul className="ma3 flex flex-column flex-row-ns flex-wrap">
+      {ProductItems}
+    </ul>
   );
 };
 
