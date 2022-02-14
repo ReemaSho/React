@@ -1,0 +1,23 @@
+img {
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 300px;
+    object-fit: contain;
+}
+
+.card {
+    width: 30%;
+    margin: auto;
+}
+
+@media screen and (max-width: 1000px) {
+    .card {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .card {
+        width: 80%;
+    }
+}
