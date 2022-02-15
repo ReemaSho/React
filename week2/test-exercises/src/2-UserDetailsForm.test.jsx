@@ -27,7 +27,6 @@ describe("UserDetailsForm", () => {
     render(
       <UserDetailsForm initialUserValues={testUser} onSubmit={() => {}} />
     );
-
     expect(screen.getByTestId(/firstName-input/i)).toHaveValue("John");
     expect(screen.getByTestId(/lastName-input/i)).toHaveValue("Doe");
     expect(screen.getByTestId(/role-input/i)).toHaveValue("Admin");

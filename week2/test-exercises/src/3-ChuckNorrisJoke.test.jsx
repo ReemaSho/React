@@ -15,7 +15,6 @@ import ChuckNorrisJoke from "./3-ChuckNorrisJoke";
  */
 
 beforeEach(() => fetchMock.resetMocks());
-beforeAll(() => (console.error = jest.fn()));
 
 const joke = "Chuck Norris's log statements are always at the FATAL level.";
 const testSuccessfulResponse = JSON.stringify({
@@ -26,16 +25,13 @@ const testSuccessfulResponse = JSON.stringify({
     categories: ["nerdy"],
   },
 });
-const testUnhappyResponse = JSON.stringify({});
 
 describe("ChuckNorrisJoke", () => {
   it("should show the Loading text when the component is still loading", async () => {
     fetch.mockResponse(testSuccessfulResponse);
-    act(() => render(<ChuckNorrisJoke />));
-
-    const loading = screen.getByText("Loading...");
-
-    expect(loading).toBeInTheDocument();
+    render(<ChuckNorrisJoke />);
+    expect(screen.getByText("Loading...")).toBeInTheDocument();
+    await screen.findByText(joke);
   });
 
   it("should show the joke the fetch returns", async () => {
@@ -46,7 +42,8 @@ describe("ChuckNorrisJoke", () => {
   });
 
   it("should show an error message if the fetch fails", async () => {
-    fetch.mockResponseOnce(testUnhappyResponse);
+    console.error = jest.fn();
+    fetch.mockReject();
     render(<ChuckNorrisJoke />);
     const errorEle = await screen.findByText(
       /Something went wrong with grabbing your joke. Please try again later./i
