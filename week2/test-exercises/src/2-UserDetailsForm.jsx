@@ -13,7 +13,6 @@ function UserDetailsForm({ initialUserValues, onSubmit }) {
   const [firstName, setFirstName] = useState(initialUserValues.firstName);
   const [lastName, setLastName] = useState(initialUserValues.lastName);
   const [role, setRole] = useState(initialUserValues.role);
-
   return (
     <div>
       <label>
@@ -22,6 +21,7 @@ function UserDetailsForm({ initialUserValues, onSubmit }) {
           type="text"
           name="firstname"
           value={firstName}
+          data-testid="firstName-input"
           onChange={(e) => setFirstName(e.target.value)}
         />
       </label>
@@ -31,6 +31,7 @@ function UserDetailsForm({ initialUserValues, onSubmit }) {
           type="text"
           name="lastname"
           value={lastName}
+          data-testid="lastName-input"
           onChange={(e) => setLastName(e.target.value)}
         />
       </label>
@@ -40,6 +41,7 @@ function UserDetailsForm({ initialUserValues, onSubmit }) {
           type="text"
           name="role"
           value={role}
+          data-testid="role-input"
           onChange={(e) => setRole(e.target.value)}
         />
       </label>

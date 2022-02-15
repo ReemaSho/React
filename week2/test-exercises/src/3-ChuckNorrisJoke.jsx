@@ -20,7 +20,7 @@
 
 import { useEffect, useState } from "react";
 
-function RandomJoke() {
+function ChuckNorrisJoke() {
   const APIURL = "http://api.icndb.com/jokes/random";
   const [joke, setJoke] = useState(null);
   const [isLoading, setLoading] = useState(true);
@@ -50,4 +50,4 @@ function RandomJoke() {
   }
 }
 
-export default RandomJoke;
+export default ChuckNorrisJoke;

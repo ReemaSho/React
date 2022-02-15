@@ -1,5 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
-
+import { render, screen, waitFor, act } from "@testing-library/react";
 import ChuckNorrisJoke from "./3-ChuckNorrisJoke";
 
 /**
@@ -15,8 +14,11 @@ import ChuckNorrisJoke from "./3-ChuckNorrisJoke";
  * Have a look at: https://github.com/jefflau/jest-fetch-mock
  */
 
+beforeEach(() => fetchMock.resetMocks());
+beforeAll(() => (console.error = jest.fn()));
+
 const joke = "Chuck Norris's log statements are always at the FATAL level.";
-const testSuccessfullResponse = JSON.stringify({
+const testSuccessfulResponse = JSON.stringify({
   type: "success",
   value: {
     id: 538,
@@ -24,23 +26,34 @@ const testSuccessfullResponse = JSON.stringify({
     categories: ["nerdy"],
   },
 });
+const testUnhappyResponse = JSON.stringify({});
 
 describe("ChuckNorrisJoke", () => {
   it("should show the Loading text when the component is still loading", async () => {
-    //TODO: Fill in!
-    expect(true).toBe(false);
+    fetch.mockResponse(testSuccessfulResponse);
+    act(() => render(<ChuckNorrisJoke />));
+
+    const loading = screen.getByText("Loading...");
+
+    expect(loading).toBeInTheDocument();
   });
 
   it("should show the joke the fetch returns", async () => {
-    //TODO: Fill in!
-    expect(true).toBe(false);
+    fetch.mockResponseOnce(testSuccessfulResponse);
+    render(<ChuckNorrisJoke />);
+    const jokeEle = await screen.findByText(joke);
+    expect(jokeEle).toBeInTheDocument();
   });
 
   it("should show an error message if the fetch fails", async () => {
-    //TODO: FIll in!
+    fetch.mockResponseOnce(testUnhappyResponse);
+    render(<ChuckNorrisJoke />);
+    const errorEle = await screen.findByText(
+      /Something went wrong with grabbing your joke. Please try again later./i
+    );
+    expect(errorEle).toBeInTheDocument();
     //EXTRA CHALLENGE: You will find that you will get a `console.error` log because the component calls it.
     //     The test will pass but it will clog up your test runs which will become a problem.
     //     Think of a way to not change the component but also not get an error message.
-    expect(true).toBe(false);
   });
 });
