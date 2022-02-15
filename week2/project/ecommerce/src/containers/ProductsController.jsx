@@ -8,6 +8,7 @@ const ProductsController = ({ SelectedCategory }) => {
   useEffect(() => {
     (async () => {
       try {
+        setLoading(true);
         let url = `https://fakestoreapi.com/products/`;
         if (SelectedCategory) {
           url = `https://fakestoreapi.com/products/category/${SelectedCategory}`;
