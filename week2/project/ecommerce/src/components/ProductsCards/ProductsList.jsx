@@ -1,17 +1,7 @@
-import { Products } from "../../fake-data/all-products";
 import ProductCard from "./ProductCard";
 
-const ProductsList = ({ SelectedCategory }) => {
-  const ProductsArr = Products;
-
-  const FilterProducts = SelectedCategory
-    ? ProductsArr.filter((Product) => {
-        const CategoryArr = SelectedCategory.split(": ");
-        return Product.category.toLowerCase() === CategoryArr[1];
-      })
-    : ProductsArr;
-
-  const ProductItems = FilterProducts.map((product) => (
+const ProductsList = ({ products }) => {
+  const ProductItems = products.map((product) => (
     <ProductCard
       key={product.id}
       ImageSource={product.image}

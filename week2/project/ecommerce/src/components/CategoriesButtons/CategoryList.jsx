@@ -1,15 +1,11 @@
-import AllCategories from "../../fake-data/all-categories";
 import Category from "./Category";
 
-const CategoryList = ({ SelectedCategory, SetSelectedCategory }) => {
-  const changeCategory = (e) => {
-    SetSelectedCategory(e.target.value);
-  };
+const CategoryList = ({ SelectedCategory, AllCategories, ChangeCategory }) => {
   const categories = AllCategories.map((CategoryItem) => (
     <Category
       key={CategoryItem}
       isActiveStyle={`${SelectedCategory === CategoryItem ? "isActive" : ""}`}
-      ChangeCategory={changeCategory}
+      ChangeCategory={ChangeCategory}
       Value={CategoryItem}
     />
   ));
