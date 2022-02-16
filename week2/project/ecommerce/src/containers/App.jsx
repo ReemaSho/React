@@ -1,11 +1,11 @@
 import HeaderTitle from "../components/Header/HeaderTitle";
-import FilterProductsOnCategory from "./FilteredProductsOnCategory";
+import CategoriesAndProductsWrapper from "./CategoriesAndProductsWrapper";
 
 function App() {
   return (
     <div className="App">
       <HeaderTitle Title={"Products"} />
-      <FilterProductsOnCategory />
+      <CategoriesAndProductsWrapper />
     </div>
   );
 }

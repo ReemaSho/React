@@ -2,7 +2,7 @@ import { useState } from "react";
 import CategoriesController from "./CategoriesController";
 import ProductsController from "./ProductsController";
 
-const FilterProductsOnCategory = () => {
+const CategoriesAndProductsWrapper = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   const changeCategory = (e) => {
@@ -22,4 +22,4 @@ const FilterProductsOnCategory = () => {
     </div>
   );
 };
-export default FilterProductsOnCategory;
+export default CategoriesAndProductsWrapper;
