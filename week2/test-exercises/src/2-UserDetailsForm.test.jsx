@@ -25,7 +25,7 @@ const mockOnSubmit = jest.fn();
 describe("UserDetailsForm", () => {
   it("Correctly fills in the initial values", () => {
     render(
-      <UserDetailsForm initialUserValues={testUser} onSubmit={() => {}} />
+      <UserDetailsForm initialUserValues={testUser} onSubmit={mockOnSubmit} />
     );
     expect(screen.getByTestId(/firstName-input/i)).toHaveValue("John");
     expect(screen.getByTestId(/lastName-input/i)).toHaveValue("Doe");
@@ -49,16 +49,15 @@ describe("UserDetailsForm", () => {
     fireEvent.change(roleInputEl, {
       target: { value: changedUser.role },
     });
-    expect(firstNameInputEl).toHaveValue("Mary");
-    expect(lastNameInputEl).toHaveValue("Williams");
-    expect(roleInputEl).toHaveValue("User");
+    expect(firstNameInputEl).toHaveValue(changedUser.firstName);
+    expect(lastNameInputEl).toHaveValue(changedUser.lastName);
+    expect(roleInputEl).toHaveValue(changedUser.role);
   });
 
   it("Submits the right values to the onSubmit function", () => {
     render(
       <UserDetailsForm initialUserValues={testUser} onSubmit={mockOnSubmit} />
     );
-
     fireEvent.change(screen.getByTestId(/firstName-input/i), {
       target: { value: changedUser.firstName },
     });

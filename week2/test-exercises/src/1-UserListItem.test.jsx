@@ -19,9 +19,11 @@ const testUser = {
 describe("UserListItem", () => {
   it("Displays all of the fields ", () => {
     render(<UserListItem user={testUser} />);
-    expect(screen.getByText(/John/i)).toBeInTheDocument();
-    expect(screen.getByText(/Doe/i)).toBeInTheDocument();
-    expect(screen.getByText(/Admin/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        `${testUser.firstName} ${testUser.lastName} (${testUser.role})`
+      )
+    ).toBeInTheDocument();
   });
 
   it("render a list tag", () => {
