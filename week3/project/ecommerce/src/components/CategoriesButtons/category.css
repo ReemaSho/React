@@ -1,0 +1,12 @@
+button {
+    border: none;
+}
+
+.category:hover {
+    background-color: #d6d6d8;
+    cursor: pointer;
+}
+
+.isActive {
+    background-color: #bdbdc1;
+}
