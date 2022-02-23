@@ -1,32 +1,16 @@
-import { useState, useEffect } from "react";
+import { useContext } from "react";
+import { SelectedCategoryContext } from "../context/SelectedCategoryContext";
 import ProductsList from "../components/ProductsCards/ProductsList";
-
-const ProductsController = ({ SelectedCategory }) => {
-  const [products, setProducts] = useState(null);
-  const [isLoading, setLoading] = useState(true);
-  const [productError, setProductError] = useState(false);
-  useEffect(() => {
-    (async () => {
-      try {
-        setLoading(true);
-        let url = `https://fakestoreapi.com/products/`;
-        if (SelectedCategory) {
-          url = `https://fakestoreapi.com/products/category/${SelectedCategory}`;
-        }
-        const response = await fetch(url);
-        const Products = await response.json();
-        setProducts(Products);
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-        setProductError(true);
-      }
-    })();
-  }, [SelectedCategory]);
-  if (productError) {
-    return (
-      <div className="tc ma5">Oops, something went wrong. Come back later!</div>
-    );
+import useFetch from "../components/useFetch";
+const ProductsController = () => {
+  const { selectedCategory } = useContext(SelectedCategoryContext);
+  let url = `https://fakestoreapi.com/products/`;
+  if (selectedCategory) {
+    url = `https://fakestoreapi.com/products/category/${selectedCategory}`;
+  }
+  const { data: products, isLoading, error } = useFetch(url);
+  if (error) {
+    return <div className="b tc ma5">{error}</div>;
   }
 
   if (isLoading) {

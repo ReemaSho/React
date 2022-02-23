@@ -6,6 +6,7 @@ const ProductsList = ({ products }) => {
       key={product.id}
       ImageSource={product.image}
       Title={product.title}
+      Id={product.id}
     />
   ));
   return (
