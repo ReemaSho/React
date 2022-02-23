@@ -1,6 +1,6 @@
 import { renderHook, act } from "@testing-library/react-hooks";
 
-import useListState from "./6-useListState";
+import useListState from "./3-useListState";
 
 /**
  * useListState is a custom hook, which means we (just like with a context) have something that does not render anything to the screen.
@@ -15,40 +15,39 @@ import useListState from "./6-useListState";
  * - We get a removeElementById function, we should use that and see that the list is updated
  */
 
-describe("useListState", () => {
-  it("Sets the correct initial list", () => {
-    const testList = [1, 2, 3];
-    const { result } = renderHook(() => useListState(testList));
-
-    expect(result.current.list).toEqual(testList);
-  });
-
-  it("Adding an element updates the list", () => {
-    const testList = [1, 2, 3];
-    const { result } = renderHook(() => useListState(testList));
-
-    expect(result.current.list).toEqual(testList);
-
-    act(() => {
-      result.current.addElement(4);
+describe.skip("useListState", () => {
+    it("Sets the correct initial list", () => {
+        const testList = [1, 2, 3];
+        const { result } = renderHook(() => useListState(testList));
+        expect(result.current.list).toEqual(testList);
     });
 
-    expect(result.current.list).toEqual([...testList, 4]);
-  });
+    it("Adding an element updates the list", () => {
+        const testList = [1, 2, 3];
+        const { result } = renderHook(() => useListState(testList));
 
-  it("Removing an element updates the list", () => {
-    const testList = [
-      { id: 1, value: 1 },
-      { id: 2, value: 2 },
-    ];
-    const { result } = renderHook(() => useListState(testList));
+        expect(result.current.list).toEqual(testList);
 
-    expect(result.current.list).toEqual(testList);
+        act(() => {
+            result.current.addElement(4);
+        });
 
-    act(() => {
-      result.current.removeElementWithId(2);
+        expect(result.current.list).toEqual([...testList, 4]);
     });
 
-    expect(result.current.list).toEqual([{ id: 1, value: 1 }]);
-  });
+    it("Removing an element updates the list", () => {
+        const testList = [
+            { id: 1, value: 1 },
+            { id: 2, value: 2 },
+        ];
+        const { result } = renderHook(() => useListState(testList));
+
+        expect(result.current.list).toEqual(testList);
+
+        act(() => {
+            result.current.removeElementWithId(2);
+        });
+
+        expect(result.current.list).toEqual([{ id: 1, value: 1 }]);
+    });
 });
