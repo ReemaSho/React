@@ -15,7 +15,7 @@ import useListState from "./3-useListState";
  * - We get a removeElementById function, we should use that and see that the list is updated
  */
 
-describe.skip("useListState", () => {
+describe("useListState", () => {
     it("Sets the correct initial list", () => {
         const testList = [1, 2, 3];
         const { result } = renderHook(() => useListState(testList));
