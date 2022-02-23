@@ -6,6 +6,7 @@ const FavoritesController = () => {
   const [products, setProducts] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+
   useEffect(() => {
     const promises = idArr.map((id) =>
       fetch(`https://fakestoreapi.com/products/${id}`)
@@ -39,8 +40,8 @@ const FavoritesController = () => {
       </div>
     );
   }
-
-  return products.length > 1 ? (
+  console.log(products.length);
+  return products.length ? (
     <ProductsList products={products} />
   ) : (
     <div className="b tc ma5">You haven't chosen any favorites yet!</div>
