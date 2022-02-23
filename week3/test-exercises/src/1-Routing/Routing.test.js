@@ -13,10 +13,6 @@ import TEST_ID from "./testids";
  *
  * You may be wondering how it works with buttons on pages that redirect to other pages (a list component going to a details component for example). That is also the responsibility of the tests in that component.
  */
-// const renderWithRouter = (component, { route = "/" } = {}) => {
-//     window.history.pushState({}, "Test page", route);
-//     return render(component, { wrapper: BrowserRouter });
-// };
 const renderWithRouter = (ui, { route = "/" } = {}) => {
     window.history.pushState({}, "Test page", route);
 
